@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-tema: #8a2be2; /* Morado por defecto */
+            --color-tema: #8a2be2; 
             --discord-azul: #5865F2;
             --negro-fondo: #0a0a0a;
             --negro-card: #141414;
@@ -48,7 +48,6 @@
         .nav-links a { color: white; text-decoration: none; font-weight: 500; cursor: pointer; transition: 0.3s; }
         .nav-links a:hover { color: var(--color-tema); }
 
-        /* PANEL DE AJUSTES (Colores e Idiomas) */
         .settings-panel {
             display: flex;
             align-items: center;
@@ -200,8 +199,8 @@
     </section>
 
     <script>
-        // ESTA ES LA URL MODIFICADA PARA GITHUB PAGES
-        const DISCORD_URL = "https://discord.com/oauth2/authorize?client_id=1494149627568586793&response_type=code&redirect_uri=https%3A%2F%2Fshooterc4ps-sys.github.io%2FNova-Store%2F&scope=identify+guilds";
+        // URL de Discord actualizada con tu nuevo link de GitHub
+        const DISCORD_URL = "https://discord.com/oauth2/authorize?client_id=1494149627568586793&response_type=code&redirect_uri=https%3A%2F%2Fshooterc4ps-sys.github.io%2FNova-Store%2F&scope=guilds+identify";
         
         let authenticated = false;
         const music = document.getElementById('bgMusic');
@@ -209,7 +208,7 @@
         const translations = {
             es: { home: "Inicio", prod: "Productos", heroTitle: "Nova <span>Store</span>", heroDesc: "La tienda oficial de nuestra comunidad. Conecta tu Discord para acceder a rangos exclusivos.", login: "Iniciar sesión", catTitle: "Catálogo <span>Nova</span>", vipDesc: "Ventajas exclusivas en el servidor.", coinsDesc: "Monedas para tu cuenta de MTA." },
             en: { home: "Home", prod: "Products", heroTitle: "Nova <span>Store</span>", heroDesc: "The official store of our community. Connect your Discord to access exclusive ranks.", login: "Login", catTitle: "Nova <span>Catalog</span>", vipDesc: "Exclusive advantages on the server.", coinsDesc: "Coins for your MTA account." },
-            pt: { home: "Início", prod: "Produtos", heroTitle: "Nova <span>Store</span>", heroDesc: "A loja oficial da nuestra comunidade. Conecte seu Discord para acessar ranks exclusivos.", login: "Entrar", catTitle: "Catálogo <span>Nova</span>", vipDesc: "Vantagens exclusivas no servidor.", coinsDesc: "Moedas para sua conta MTA." }
+            pt: { home: "Início", prod: "Produtos", heroTitle: "Nova <span>Store</span>", heroDesc: "A loja oficial da nuestra comunidade. Conecte seu Discord para acessar ranks exclusivos.", login: "Entrar", catTitle: "Catálogo <span>Nova</span>", vipDesc: "Vantagens exclusivas no servidor.", coinsDesc: "Moedas para sua cuenta MTA." }
         };
 
         function changeColor(color) {
