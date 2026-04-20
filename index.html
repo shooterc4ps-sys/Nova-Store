@@ -47,7 +47,8 @@
         .nav-links a { color: white; text-decoration: none; font-weight: 500; cursor: pointer; transition: 0.3s; font-size: 0.9rem; }
         .nav-links a:hover { color: var(--color-tema); }
 
-        .btn-nav-discord { background: var(--discord-azul); padding: 8px 15px; border-radius: 5px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .btn-nav-discord { background: var(--discord-azul); padding: 8px 15px; border-radius: 5px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: white; text-decoration: none; border: none; cursor: pointer; }
+        .btn-nav-discord.autorizado { background: #2ecc71; cursor: default; }
 
         /* HERO SECTION */
         .hero { display: flex; min-height: 100vh; align-items: center; padding: 100px 8% 0; box-sizing: border-box; }
@@ -105,7 +106,7 @@
 
     <nav>
         <div class="nav-brand">
-            <img src="https://media.discordapp.net/attachments/1494658372866408628/1495604211768102952/logo.png" alt="Logo">
+            <img src="./logo.png" alt="Logo Nova">
             <h1 class="nav-logo">Nova Store</h1>
         </div>
 
@@ -120,14 +121,14 @@
         <div class="hero-text">
             <h1>Nova <span>Store</span></h1>
             <p>La tienda oficial de nuestra comunidad. Conecta tu Discord para acceder a rangos exclusivos y beneficios para MTA.</p>
-            <button class="btn-nav-discord" style="padding: 15px 35px; font-size: 1rem; border: none; cursor: pointer;" onclick="iniciarLogin()">
-                <i class="fab fa-discord"></i> Iniciar sesión con Discord
+            <button class="btn-nav-discord" id="btn-login-main" style="padding: 15px 35px; font-size: 1rem;" onclick="iniciarLogin()">
+                <i class="fab fa-discord"></i> <span id="text-login">Iniciar sesión con Discord</span>
             </button>
         </div>
         
         <div class="hero-logo-container">
             <div class="logo-glow"></div>
-            <img src="https://media.discordapp.net/attachments/1494658372866408628/1495604211768102952/logo.png" alt="Logo Nova">
+            <img src="./logo.png" alt="Logo Nova">
         </div>
     </main>
 
@@ -138,26 +139,27 @@
                 <div style="font-size: 3.5rem; margin-bottom: 15px;">📦</div>
                 <h3>Rango VIP</h3>
                 <p style="color: #777; margin-bottom: 20px;">Acceso a comandos y skins exclusivas.</p>
-                <button class="btn-nav-discord" style="width: 100%; justify-content: center; background: var(--color-tema); border: none; cursor: pointer;">Comprar</button>
+                <button class="btn-nav-discord" style="width: 100%; justify-content: center; background: var(--color-tema);">Comprar</button>
             </div>
             <div class="card">
                 <div style="font-size: 3.5rem; margin-bottom: 15px;">💰</div>
                 <h3>Pack Coins</h3>
                 <p style="color: #777; margin-bottom: 20px;">Monedas para el servidor MTA.</p>
-                <button class="btn-nav-discord" style="width: 100%; justify-content: center; background: var(--color-tema); border: none; cursor: pointer;">Comprar</button>
+                <button class="btn-nav-discord" style="width: 100%; justify-content: center; background: var(--color-tema);">Comprar</button>
             </div>
         </div>
     </section>
 
     <script>
-        // URL EXACTA PARA EVITAR ERROR
         const DISCORD_URL = "https://discord.com/oauth2/authorize?client_id=1494149627568586793&response_type=code&redirect_uri=https%3A%2F%2Fshooterc4ps-sys.github.io%2FNova-Store%2F&scope=identify+guilds";
         
         let authenticated = false;
         const music = document.getElementById('bgMusic');
 
         function iniciarLogin() { 
-            window.location.href = DISCORD_URL; 
+            if(!authenticated) {
+                window.location.href = DISCORD_URL; 
+            }
         }
 
         function checkAccess() {
@@ -181,22 +183,34 @@
             }
         }
 
-        // Intento de reproducción automática al primer clic del usuario
+        // Reproduce música al primer clic en cualquier parte de la página
         document.body.addEventListener('click', () => {
-            if (music.paused && document.getElementById('txt-m-status').innerText === "PAUSADO") {
-                // Solo activa si el usuario no lo pausó manualmente
+            if (music.paused) {
+                music.play().then(() => {
+                    document.getElementById('mBtn').innerHTML = '<i class="fas fa-pause"></i>'; 
+                    document.getElementById('txt-m-status').innerText = "SONANDO";
+                }).catch((e) => {
+                    console.log("Esperando interacción para reproducir música...");
+                });
             }
         }, { once: true });
 
         window.addEventListener('load', () => {
             const urlParams = new URLSearchParams(window.location.search);
+            // Si hay un código, significa que ya iniciamos sesión
             if (urlParams.get('code')) {
                 authenticated = true;
+                
+                // Muestra la sección de productos, pero NO hace scroll automático
                 document.getElementById("products-section").style.display = "block";
+                
+                // Cambia el botón principal a autorizado
+                const btnLogin = document.getElementById("btn-login-main");
+                btnLogin.classList.add("autorizado");
+                document.getElementById("text-login").innerText = "Autorizado en Nova";
+                
+                // Limpia la URL para que quede bonita
                 window.history.replaceState({}, document.title, window.location.pathname);
-                setTimeout(() => {
-                    document.getElementById("products-section").scrollIntoView({behavior: 'smooth'});
-                }, 500);
             }
         });
     </script>
