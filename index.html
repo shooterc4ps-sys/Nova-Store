@@ -48,38 +48,8 @@
         .nav-links a { color: white; text-decoration: none; font-weight: 500; cursor: pointer; transition: 0.3s; }
         .nav-links a:hover { color: var(--color-tema); }
 
-        .settings-panel {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255,255,255,0.05);
-            padding: 5px 15px;
-            border-radius: 30px;
-            border: 1px solid #333;
-        }
-
-        .color-dot {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid #fff;
-            transition: 0.2s;
-        }
-        .color-dot:hover { transform: scale(1.2); }
-
-        .lang-select {
-            background: transparent;
-            color: white;
-            border: none;
-            font-size: 0.8rem;
-            cursor: pointer;
-            outline: none;
-        }
-
         .btn-discord-login { background-color: var(--discord-azul); color: white; padding: 10px 15px; border-radius: 5px; font-weight: 600; font-size: 0.8rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
         .btn-discord-login:hover { background-color: #4752c4; transform: translateY(-2px); }
-        .btn-discord-login.logged { background-color: #2ecc71; cursor: default; }
 
         /* HERO SECTION */
         .hero { display: flex; min-height: 100vh; align-items: center; padding: 80px 8% 0; box-sizing: border-box; gap: 5%; }
@@ -105,16 +75,12 @@
         .catalog-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 50px; }
         .card { background: var(--negro-card); padding: 40px; border-radius: 15px; width: 300px; transition: 0.3s; border: 1px solid #222; }
         .card:hover { border-color: var(--color-tema); transform: translateY(-10px); }
-        .card h3 { margin: 15px 0 10px; font-size: 1.5rem; }
-        .card .price { color: var(--color-tema); font-size: 1.8rem; font-weight: bold; margin-bottom: 20px; display: block; }
-        .btn-buy { background: var(--color-tema); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
         /* REPRODUCTOR */
         .music-player { position: fixed; bottom: 20px; right: 20px; z-index: 2000; background: rgba(0,0,0,0.9); border: 1px solid var(--color-tema); padding: 10px 15px; border-radius: 50px; display: flex; align-items: center; gap: 12px; }
         .music-btn { background: var(--color-tema); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
 
         @media (max-width: 1100px) {
-            nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
             .hero { flex-direction: column-reverse; text-align: center; padding-top: 120px; }
             .hero-text h1 { font-size: 2.8rem; }
             .hero-logo img { max-width: 320px; }
@@ -139,36 +105,22 @@
         </div>
 
         <div class="nav-right">
-            <div class="settings-panel">
-                <div class="color-dot" style="background: #ff0000;" onclick="changeColor('#ff0000')"></div>
-                <div class="color-dot" style="background: #007bff;" onclick="changeColor('#007bff')"></div>
-                <div class="color-dot" style="background: #ffc107;" onclick="changeColor('#ffc107')"></div>
-                <div class="color-dot" style="background: #8a2be2;" onclick="changeColor('#8a2be2')"></div>
-                <div style="width: 1px; height: 20px; background: #444; margin: 0 5px;"></div>
-                <select class="lang-select" onchange="changeLang(this.value)">
-                    <option value="es">ES</option>
-                    <option value="en">EN</option>
-                    <option value="pt">PT</option>
-                </select>
-            </div>
-
             <ul class="nav-links">
-                <li><a onclick="window.scrollTo({top:0, behavior:'smooth'})" id="nav-home">Inicio</a></li>
-                <li><a onclick="checkAccess()" id="nav-prod">Productos</a></li>
+                <li><a onclick="window.scrollTo({top:0, behavior:'smooth'})">Inicio</a></li>
                 <li><a href="https://discord.gg/RZfAkAK7" target="_blank" style="color: var(--discord-azul); font-weight: bold;"><i class="fab fa-discord"></i> Discord</a></li>
             </ul>
             <button class="btn-discord-login" id="loginBtnNav" onclick="iniciarLogin()">
-                <i class="fab fa-discord"></i> <span id="btnTextNav">Iniciar sesión</span>
+                <i class="fab fa-discord"></i> <span>Iniciar sesión</span>
             </button>
         </div>
     </nav>
 
     <main class="hero">
         <div class="hero-text">
-            <h1 id="hero-title">Nova <span>Store</span></h1>
-            <p id="hero-desc">La tienda oficial de nuestra comunidad. Conecta tu Discord para acceder a rangos exclusivos y beneficios para MTA.</p>
-            <button class="btn-discord-login" id="loginBtnHero" style="padding: 18px 40px; font-size: 1.1rem;" onclick="iniciarLogin()">
-                <i class="fab fa-discord"></i> <span id="btnTextHero">Iniciar sesión con Discord</span>
+            <h1>Nova <span>Store</span></h1>
+            <p>La tienda oficial de nuestra comunidad. Conecta tu Discord para acceder a rangos exclusivos y beneficios para MTA.</p>
+            <button class="btn-discord-login" style="padding: 18px 40px; font-size: 1.1rem;" onclick="iniciarLogin()">
+                <i class="fab fa-discord"></i> <span>Iniciar sesión con Discord</span>
             </button>
         </div>
         
@@ -179,61 +131,25 @@
     </main>
 
     <section id="products-section">
-        <h2 id="cat-title">Catálogo <span>Nova</span></h2>
+        <h2>Catálogo <span>Nova</span></h2>
         <div class="catalog-grid">
             <div class="card">
                 <div style="font-size: 3rem;">📦</div>
-                <h3 id="vip-name">Rango VIP</h3>
-                <p id="vip-desc">Ventajas exclusivas en el servidor.</p>
-                <span class="price">$10.00</span>
-                <button class="btn-buy">Comprar</button>
-            </div>
-            <div class="card">
-                <div style="font-size: 3rem;">💰</div>
-                <h3 id="coins-name">Pack Coins</h3>
-                <p id="coins-desc">Monedas para tu cuenta de MTA.</p>
-                <span class="price">$5.00</span>
-                <button class="btn-buy">Comprar</button>
+                <h3>Rango VIP</h3>
+                <p>Ventajas exclusivas en el servidor.</p>
+                <button class="btn-discord-login" style="width: 100%; justify-content: center; background: var(--color-tema);">Comprar</button>
             </div>
         </div>
     </section>
 
     <script>
-        // URL de Discord actualizada con tu nuevo link de GitHub
+        // URL EXACTA QUE ME PASASTE
         const DISCORD_URL = "https://discord.com/oauth2/authorize?client_id=1494149627568586793&response_type=code&redirect_uri=https%3A%2F%2Fshooterc4ps-sys.github.io%2FNova-Store%2F&scope=guilds+identify";
         
-        let authenticated = false;
         const music = document.getElementById('bgMusic');
 
-        const translations = {
-            es: { home: "Inicio", prod: "Productos", heroTitle: "Nova <span>Store</span>", heroDesc: "La tienda oficial de nuestra comunidad. Conecta tu Discord para acceder a rangos exclusivos.", login: "Iniciar sesión", catTitle: "Catálogo <span>Nova</span>", vipDesc: "Ventajas exclusivas en el servidor.", coinsDesc: "Monedas para tu cuenta de MTA." },
-            en: { home: "Home", prod: "Products", heroTitle: "Nova <span>Store</span>", heroDesc: "The official store of our community. Connect your Discord to access exclusive ranks.", login: "Login", catTitle: "Nova <span>Catalog</span>", vipDesc: "Exclusive advantages on the server.", coinsDesc: "Coins for your MTA account." },
-            pt: { home: "Início", prod: "Produtos", heroTitle: "Nova <span>Store</span>", heroDesc: "A loja oficial da nuestra comunidade. Conecte seu Discord para acessar ranks exclusivos.", login: "Entrar", catTitle: "Catálogo <span>Nova</span>", vipDesc: "Vantagens exclusivas no servidor.", coinsDesc: "Moedas para sua cuenta MTA." }
-        };
-
-        function changeColor(color) {
-            document.documentElement.style.setProperty('--color-tema', color);
-            if (!music.paused) document.getElementById('txt-m-status').style.color = color;
-        }
-
-        function changeLang(lang) {
-            const t = translations[lang];
-            document.getElementById('nav-home').innerText = t.home;
-            document.getElementById('nav-prod').innerText = t.prod;
-            document.getElementById('hero-title').innerHTML = t.heroTitle;
-            document.getElementById('hero-desc').innerText = t.heroDesc;
-            document.getElementById('btnTextNav').innerText = t.login;
-            document.getElementById('btnTextHero').innerText = t.login + " con Discord";
-            document.getElementById('cat-title').innerHTML = t.catTitle;
-            document.getElementById('vip-desc').innerText = t.vipDesc;
-            document.getElementById('coins-desc').innerText = t.coinsDesc;
-        }
-
-        function iniciarLogin() { window.location.href = DISCORD_URL; }
-
-        function checkAccess() {
-            if (!authenticated) { alert("Inicia sesión primero."); iniciarLogin(); }
-            else { document.getElementById("products-section").scrollIntoView({behavior: 'smooth'}); }
+        function iniciarLogin() { 
+            window.location.href = DISCORD_URL; 
         }
 
         function toggleMusic() {
@@ -241,7 +157,7 @@
                 music.play(); 
                 document.getElementById('mBtn').innerHTML = '<i class="fas fa-pause"></i>'; 
                 document.getElementById('txt-m-status').innerText = "SONANDO";
-                document.getElementById('txt-m-status').style.color = getComputedStyle(document.documentElement).getPropertyValue('--color-tema');
+                document.getElementById('txt-m-status').style.color = "#8a2be2";
             } else { 
                 music.pause(); 
                 document.getElementById('mBtn').innerHTML = '<i class="fas fa-play"></i>'; 
@@ -253,13 +169,9 @@
         window.addEventListener('load', () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('code')) {
-                authenticated = true;
                 document.getElementById("products-section").style.display = "block";
-                document.getElementById("loginBtnNav").classList.add("logged");
                 document.getElementById("loginBtnNav").innerHTML = "Autorizado";
-                document.getElementById("loginBtnHero").style.display = "none";
-                window.history.replaceState({}, document.title, window.location.pathname);
-                setTimeout(() => { document.getElementById("products-section").scrollIntoView({behavior: 'smooth'}); }, 500);
+                document.getElementById("products-section").scrollIntoView({behavior: 'smooth'});
             }
         });
     </script>
