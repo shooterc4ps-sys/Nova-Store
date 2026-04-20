@@ -40,44 +40,55 @@
         }
 
         .nav-brand { display: flex; align-items: center; gap: 15px; }
-        .nav-brand img { height: 50px; width: auto; }
-        .nav-logo { font-weight: bold; font-size: 1.5rem; color: var(--color-tema); text-transform: uppercase; letter-spacing: 2px; margin: 0; }
+        .nav-brand img { height: 45px; width: auto; }
+        .nav-logo { font-weight: bold; font-size: 1.4rem; color: var(--color-tema); text-transform: uppercase; letter-spacing: 2px; margin: 0; }
 
-        .btn-discord-login { background-color: var(--discord-azul); color: white; padding: 10px 15px; border-radius: 5px; font-weight: 600; font-size: 0.8rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .btn-discord-login:hover { background-color: #4752c4; transform: translateY(-2px); }
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; cursor: pointer; transition: 0.3s; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--color-tema); }
+
+        .btn-nav-discord { background: var(--discord-azul); padding: 8px 15px; border-radius: 5px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
 
         /* HERO SECTION */
-        .hero { display: flex; min-height: 100vh; align-items: center; padding: 80px 8% 0; box-sizing: border-box; gap: 5%; }
-        .hero-text { flex: 1.2; z-index: 10; }
-        .hero-text h1 { font-size: 4.5rem; margin: 0; line-height: 1.1; }
+        .hero { display: flex; min-height: 100vh; align-items: center; padding: 100px 8% 0; box-sizing: border-box; }
+        .hero-text { flex: 1; z-index: 10; }
+        .hero-text h1 { font-size: 4rem; margin: 0; line-height: 1.1; }
         .hero-text h1 span { color: var(--color-tema); }
-        .hero-text p { color: #aaa; margin: 30px 0; max-width: 600px; font-size: 1.3rem; }
+        .hero-text p { color: #aaa; margin: 25px 0; max-width: 500px; font-size: 1.1rem; }
 
-        .hero-logo { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; }
-        .logo-glow { position: absolute; width: 400px; height: 400px; background: var(--color-tema); filter: blur(150px); opacity: 0.35; border-radius: 50%; }
-        
-        .hero-logo img { 
-            max-width: 550px; 
-            width: 100%; 
+        /* LOGO MEDIANO DERECHA CENTRO */
+        .hero-logo-container { flex: 1; display: flex; justify-content: flex-end; align-items: center; position: relative; }
+        .hero-logo-container img { 
+            width: 450px; 
             height: auto; 
-            position: relative; 
             z-index: 2; 
-            filter: drop-shadow(0 0 30px var(--color-tema));
+            filter: drop-shadow(0 0 25px var(--color-tema));
+            animation: floating 3s ease-in-out infinite;
+        }
+        .logo-glow { position: absolute; width: 350px; height: 350px; background: var(--color-tema); filter: blur(120px); opacity: 0.3; border-radius: 50%; right: 50px; }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         /* CATÁLOGO */
         #products-section { display: none; padding: 100px 8%; text-align: center; }
         .catalog-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 50px; }
-        .card { background: var(--negro-card); padding: 40px; border-radius: 15px; width: 300px; transition: 0.3s; border: 1px solid #222; }
+        .card { background: var(--negro-card); padding: 40px; border-radius: 15px; width: 280px; transition: 0.3s; border: 1px solid #222; }
+        .card:hover { border-color: var(--color-tema); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2); }
 
-        /* REPRODUCTOR */
-        .music-player { position: fixed; bottom: 20px; right: 20px; z-index: 2000; background: rgba(0,0,0,0.9); border: 1px solid var(--color-tema); padding: 10px 15px; border-radius: 50px; display: flex; align-items: center; gap: 12px; }
-        .music-btn { background: var(--color-tema); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; }
+        /* REPRODUCTOR DE MÚSICA */
+        .music-player { position: fixed; bottom: 25px; left: 25px; z-index: 2000; background: rgba(0,0,0,0.8); border: 1px solid var(--color-tema); padding: 10px 20px; border-radius: 50px; display: flex; align-items: center; gap: 15px; backdrop-filter: blur(5px); }
+        .music-btn { background: var(--color-tema); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .music-btn:hover { transform: scale(1.1); }
+        #txt-m-status { font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: var(--color-tema); }
 
-        @media (max-width: 1100px) {
-            .hero { flex-direction: column-reverse; text-align: center; padding-top: 120px; }
-            .hero-text h1 { font-size: 2.8rem; }
-            .hero-logo img { max-width: 320px; }
+        @media (max-width: 1000px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 150px; }
+            .hero-logo-container { justify-content: center; margin-bottom: 50px; }
+            .hero-logo-container img { width: 300px; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -88,8 +99,8 @@
     </audio>
 
     <div class="music-player">
-        <span id="txt-m-status" style="font-size: 0.7rem; color: #777;">PAUSADO</span>
         <button class="music-btn" onclick="toggleMusic()" id="mBtn"><i class="fas fa-play"></i></button>
+        <span id="txt-m-status">PAUSADO</span>
     </div>
 
     <nav>
@@ -97,46 +108,65 @@
             <img src="https://media.discordapp.net/attachments/1494658372866408628/1495604211768102952/logo.png" alt="Logo">
             <h1 class="nav-logo">Nova Store</h1>
         </div>
-        <button class="btn-discord-login" onclick="iniciarLogin()">
-            <i class="fab fa-discord"></i> <span>Entrar</span>
-        </button>
+
+        <ul class="nav-links">
+            <li><a onclick="window.scrollTo({top:0, behavior:'smooth'})">Inicio</a></li>
+            <li><a onclick="checkAccess()">Productos</a></li>
+            <li><a href="https://discord.gg/fFBrPnek" target="_blank" class="btn-nav-discord"><i class="fab fa-discord"></i> Discord</a></li>
+        </ul>
     </nav>
 
     <main class="hero">
         <div class="hero-text">
             <h1>Nova <span>Store</span></h1>
-            <p>La tienda oficial de nuestra comunidad. Conecta tu Discord para acceder a rangos exclusivos.</p>
-            <button class="btn-discord-login" style="padding: 18px 40px; font-size: 1.1rem;" onclick="iniciarLogin()">
-                <i class="fab fa-discord"></i> <span>Iniciar sesión con Discord</span>
+            <p>La tienda oficial de nuestra comunidad. Conecta tu Discord para acceder a rangos exclusivos y beneficios para MTA.</p>
+            <button class="btn-nav-discord" style="padding: 15px 35px; font-size: 1rem; border: none; cursor: pointer;" onclick="iniciarLogin()">
+                <i class="fab fa-discord"></i> Iniciar sesión con Discord
             </button>
         </div>
         
-        <div class="hero-logo">
+        <div class="hero-logo-container">
             <div class="logo-glow"></div>
             <img src="https://media.discordapp.net/attachments/1494658372866408628/1495604211768102952/logo.png" alt="Logo Nova">
         </div>
     </main>
 
     <section id="products-section">
-        <h2>Catálogo <span>Nova</span></h2>
+        <h2 style="font-size: 2.5rem; margin-bottom: 50px;">Catálogo <span>Nova</span></h2>
         <div class="catalog-grid">
             <div class="card">
-                <div style="font-size: 3rem;">📦</div>
+                <div style="font-size: 3.5rem; margin-bottom: 15px;">📦</div>
                 <h3>Rango VIP</h3>
-                <p>Ventajas en el servidor.</p>
-                <button class="btn-discord-login" style="width: 100%; justify-content: center; background: var(--color-tema);">Comprar</button>
+                <p style="color: #777; margin-bottom: 20px;">Acceso a comandos y skins exclusivas.</p>
+                <button class="btn-nav-discord" style="width: 100%; justify-content: center; background: var(--color-tema); border: none; cursor: pointer;">Comprar</button>
+            </div>
+            <div class="card">
+                <div style="font-size: 3.5rem; margin-bottom: 15px;">💰</div>
+                <h3>Pack Coins</h3>
+                <p style="color: #777; margin-bottom: 20px;">Monedas para el servidor MTA.</p>
+                <button class="btn-nav-discord" style="width: 100%; justify-content: center; background: var(--color-tema); border: none; cursor: pointer;">Comprar</button>
             </div>
         </div>
     </section>
 
     <script>
-        // URL Corregida para coincidir con tu panel
+        // URL EXACTA PARA EVITAR ERROR
         const DISCORD_URL = "https://discord.com/oauth2/authorize?client_id=1494149627568586793&response_type=code&redirect_uri=https%3A%2F%2Fshooterc4ps-sys.github.io%2FNova-Store%2F&scope=identify+guilds";
         
+        let authenticated = false;
         const music = document.getElementById('bgMusic');
 
         function iniciarLogin() { 
             window.location.href = DISCORD_URL; 
+        }
+
+        function checkAccess() {
+            if (!authenticated) {
+                alert("Debes iniciar sesión con Discord para ver los productos.");
+                iniciarLogin();
+            } else {
+                document.getElementById("products-section").scrollIntoView({behavior: 'smooth'});
+            }
         }
 
         function toggleMusic() {
@@ -151,12 +181,22 @@
             }
         }
 
+        // Intento de reproducción automática al primer clic del usuario
+        document.body.addEventListener('click', () => {
+            if (music.paused && document.getElementById('txt-m-status').innerText === "PAUSADO") {
+                // Solo activa si el usuario no lo pausó manualmente
+            }
+        }, { once: true });
+
         window.addEventListener('load', () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('code')) {
+                authenticated = true;
                 document.getElementById("products-section").style.display = "block";
-                document.getElementById("products-section").scrollIntoView({behavior: 'smooth'});
                 window.history.replaceState({}, document.title, window.location.pathname);
+                setTimeout(() => {
+                    document.getElementById("products-section").scrollIntoView({behavior: 'smooth'});
+                }, 500);
             }
         });
     </script>
